@@ -49,7 +49,7 @@ function getWaifu() {
 
         // set description
         const description = document.getElementById('description');
-        description.innerHTML = `<p class='text-break'>
+        rawHTML = `<p class='text-break'>
                                     Source:
                                     <a href='${source}' target='_blank'>${getDomainName(source)}</a><br>
                                     <br>
@@ -74,6 +74,8 @@ function getWaifu() {
                                     Dominant color:
                                     ${dominant_color}
                                 </p>`;
+        let cleanHTML = DOMPurify.sanitize(rawHTML);
+        description.innerHTML = cleanHTML;
 
         // set image
         const img = new Image();
@@ -85,7 +87,6 @@ function getWaifu() {
         // save current state to local storage
         saveState(url, source, is_nsfw, tags, extension, width, height, byte_size, dominant_color);
     }
-
 }
 
 // info column toggle
@@ -129,7 +130,6 @@ function toggleInfo() {
         infoButton.classList.remove("btn-info");
         infoButton.classList.add("btn-outline-info");
     }
-
 }
 
 // save current state to local storage
@@ -167,7 +167,7 @@ function restoreImage() {
 
             // set description
             const description = document.getElementById('description');
-            description.innerHTML = `<p class='text-break'>
+            rawHTML = `<p class='text-break'>
                                         Source:
                                         <a href='${source}' target='_blank'>${getDomainName(source)}</a><br>
                                         <br>
@@ -192,6 +192,8 @@ function restoreImage() {
                                         Dominant color:
                                         ${dominant_color}
                                     </p>`;
+            let cleanHTML = DOMPurify.sanitize(rawHTML);
+            description.innerHTML = cleanHTML;
 
             // set image
             const imgTag = document.getElementById("waifu");
