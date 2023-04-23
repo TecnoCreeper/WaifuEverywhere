@@ -1,0 +1,22 @@
+{
+    "manifest_version": 2,
+    "name": "WaifuEverywhere",
+    "version": "1.0",
+    "description": "Firefox add-on to get waifu images.",
+    "developer": {
+        "name": "Gregorio P.",
+        "url": "https://github.com/TecnoCreeper/WaifuEverywhere"
+    },
+    "icons": {
+        "48": "icons/icon48.png",
+        "96": "icons/icon96.png"
+    },
+    "browser_action": {
+        "default_icon": "icons/icon.jpg",
+        "default_title": "WaifuEverywhere",
+        "default_popup": "popup/waifu.html"
+    },
+    "permissions": [
+        "storage"
+    ]
+}

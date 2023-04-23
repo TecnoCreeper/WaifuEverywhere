@@ -1,0 +1,27 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 16px;
+}
+
+.expanded-minwidth {
+    min-width: 600px !important;
+}
+
+#root {
+    min-width: 300px;
+    max-width: 800px;
+    max-height: 600px;
+}
+
+#waifu-container {
+    height: 484px;
+}
+
+#waifu {
+    height: 100%;
+    width: 100%;
+    object-fit: scale-down;
+}
