@@ -155,9 +155,6 @@ function toggleInfo(state) {
 
         rootDiv.classList.add("expanded-minwidth");
 
-        contentCol.classList.remove("col-12");
-        contentCol.classList.add("col-8");
-
         descriptionCol.classList.remove("d-none");
 
         infoButton.classList.remove("btn-outline-info");
@@ -170,12 +167,9 @@ function toggleInfo(state) {
     ) {
         // switch to hide info
 
-        descriptionCol.classList.add("d-none");
-
-        contentCol.classList.remove("col-8");
-        contentCol.classList.add("col-12");
-
         rootDiv.classList.remove("expanded-minwidth");
+
+        descriptionCol.classList.add("d-none");
 
         infoButton.classList.remove("btn-info");
         infoButton.classList.add("btn-outline-info");
