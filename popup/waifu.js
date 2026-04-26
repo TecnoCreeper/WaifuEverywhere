@@ -117,7 +117,7 @@ function crateInfoHTML(source, tags, dominant_color, artist) {
 
     rawHTML += `
                 Tags: ${tags}<br /><br />
-                Dominant color: ${dominant_color}
+                Dominant color:<br /><span style="color:${dominant_color}">&#9632;</span> ${dominant_color}
         `;
 
     if (artist) {
