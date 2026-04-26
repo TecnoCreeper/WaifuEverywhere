@@ -59,6 +59,7 @@ function getWaifu() {
         const description = document.getElementById("description");
         description.innerHTML = DOMPurify.sanitize(
             crateInfoHTML(source, tags, dominant_color, artist),
+            { USE_PROFILES: { html: true } },
         );
 
         // set image
