@@ -2,10 +2,6 @@
     box-sizing: border-box;
 }
 
-body {
-    font-size: 16px;
-}
-
 .expanded-minwidth {
     min-width: 600px !important;
 }
