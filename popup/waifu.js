@@ -110,16 +110,17 @@ function handleRedditUrl(url) {
 
 function crateInfoHTML(source, tags, dominant_color, artist) {
     let rawHTML = "<p class='text-break'>";
+
     if (source) {
         rawHTML += `
-                <a href='${source}' target='_blank'>Source</a><br /><br />
-            `;
+            <a href='${source}' target='_blank'>Source</a><br /><br />
+        `;
     }
 
     rawHTML += `
-                Tags: ${tags}<br /><br />
-                Dominant color:<br /><span style="color:${dominant_color}">&#9632;</span> ${dominant_color}
-        `;
+        Tags: ${tags}<br /><br />
+        Dominant color:<br /><span style="color:${dominant_color}">&#9632;</span> ${dominant_color}
+    `;
 
     if (artist) {
         if (artist.name && !artist.link) {
@@ -141,8 +142,6 @@ function crateInfoHTML(source, tags, dominant_color, artist) {
 }
 
 function toggleInfo(state) {
-    // things that change: min-width of 'root', info column visibility, content column width, info button color
-
     const descriptionCol = document.getElementById("description-col");
     const contentCol = document.getElementById("content-col");
     const infoButton = document.getElementById("info");
@@ -158,8 +157,7 @@ function toggleInfo(state) {
 
         descriptionCol.classList.remove("d-none");
 
-        infoButton.classList.remove("btn-outline-info");
-        infoButton.classList.add("btn-info");
+        infoButton.classList.replace("btn-outline-info", "btn-info");
 
         browser.storage.local.set({ infovisibility: "show" });
     } else if (
@@ -172,8 +170,7 @@ function toggleInfo(state) {
 
         descriptionCol.classList.add("d-none");
 
-        infoButton.classList.remove("btn-info");
-        infoButton.classList.add("btn-outline-info");
+        infoButton.classList.replace("btn-info", "btn-outline-info");
 
         browser.storage.local.set({ infovisibility: "hide" });
     }
@@ -202,10 +199,12 @@ function saveState(
 // when popup is opened, load image and description from local storage
 function restoreState() {
     browser.storage.local.get(null).then(function (data) {
+        const description = document.getElementById("description");
+        const imgTag = document.getElementById("waifu");
+
         // if there is data in local storage
-        if (data.url) {
+        if (data && data.url) {
             // set description
-            const description = document.getElementById("description");
             description.innerHTML = DOMPurify.sanitize(
                 crateInfoHTML(
                     data.source,
@@ -219,12 +218,9 @@ function restoreState() {
             toggleInfo(data.infovisibility);
 
             // set image
-            const imgTag = document.getElementById("waifu");
             imgTag.setAttribute("src", data.url);
         } else {
-            const imgTag = document.getElementById("waifu");
-            imgTag.src = "";
-            const description = document.getElementById("description");
+            imgTag.setAttribute("src", "");
             description.innerHTML = "<p class='text-break'>No description</p>";
             toggleInfo("hide");
         }
