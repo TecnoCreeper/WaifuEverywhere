@@ -18,7 +18,14 @@ restoreState();
 function getWaifu() {
     // set loading gif
     const imgTag = document.getElementById("waifu");
-    imgTag.setAttribute("src", "Spin-1s-200px.gif");
+    imgTag.setAttribute("src", "spinner.gif");
+    imgTag.classList.add("spinner");
+
+    imgTag.addEventListener("load", function () {
+        if (!this.src.includes("spinner")) {
+            imgTag.classList.remove("spinner");
+        }
+    });
 
     // api request
     const xhr = new XMLHttpRequest();
@@ -27,7 +34,8 @@ function getWaifu() {
     xhr.send();
     xhr.onload = function () {
         if (xhr.status !== 200) {
-            throw new Error();
+            imgTag.setAttribute("src", "error.png");
+            return;
         }
 
         const response = JSON.parse(xhr.responseText).items[0];
