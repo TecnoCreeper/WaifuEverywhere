@@ -29,7 +29,7 @@ function getWaifu() {
 
     // api request
     const xhr = new XMLHttpRequest();
-    xhr.open("GET", "https://api.waifu.im/images/?IsNsfw=False");
+    xhr.open("GET", "https://api.waifu.im/images/?IsNsfw=False&OrderBy=Random");
     xhr.setRequestHeader("Accept-Version", "v7");
     xhr.send();
     xhr.onload = function () {
